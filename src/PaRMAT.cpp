@@ -14,7 +14,7 @@
 
 
 void openFileToWrite( std::ofstream& input_file, const char* file_name ) {
-	input_file.open(file_name);
+	input_file.open(file_name, std::ios::binary);
 	if( !input_file )
 		throw std::runtime_error( "Failed to open specified file." );
 }
@@ -102,7 +102,7 @@ int main( int argc, char ** argv ) {
 			throw std::runtime_error( "Number of edges or number of vertices are not specified (correctly)." );
 
 		if( !outf.is_open() )
-			openFileToWrite( outf, "out.txt" );
+			openFileToWrite( outf, "out.bin" );
 
 		// Avoiding very small regions which may cause incorrect results.
 		if( nEdges < 10000 )

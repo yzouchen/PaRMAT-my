@@ -1,5 +1,5 @@
 #include "Edge.hpp"
-
+#include <bitset>
 
 Edge::Edge(EdgeIndexType rec_src, EdgeIndexType rec_dst):
 		src(rec_src), dst(rec_dst)
@@ -36,6 +36,8 @@ bool operator== (const Edge& cR1, const Edge& cR2) {
 }
 
 std::ostream& operator<< (std::ostream &out, Edge &cEdge) {
-	out << cEdge.src << "\t" << cEdge.dst << "\n";
+	out.write(reinterpret_cast<const char*>(&(cEdge.src)), sizeof(cEdge.src));
+	out.write(reinterpret_cast<const char*>(&(cEdge.dst)), sizeof(cEdge.dst));
+	// out << cEdge.src << "\t" << cEdge.dst << "\n";
 	return out;
 }
